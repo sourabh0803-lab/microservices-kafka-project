@@ -12,23 +12,15 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Configuration class for RestTemplate and Kafka Producer.
- */
+
 @Configuration
 public class KafkaConfig {
 
-    /**
-     * RestTemplate bean for calling Product Service REST endpoints.
-     */
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
-    /**
-     * ProducerFactory defines Kafka producer configuration.
-     */
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> config = new HashMap<>();
@@ -38,9 +30,6 @@ public class KafkaConfig {
         return new DefaultKafkaProducerFactory<>(config);
     }
 
-    /**
-     * KafkaTemplate is used to send messages to Kafka topics.
-     */
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
